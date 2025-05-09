@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Polynomfunktion – Monotonie & Krümmung</title>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 40px;
+    }
+    .title {
+      font-size: 1.4em;
+      font-weight: bold;
+    }
+    .section {
+      margin-top: 20px;
+    }
+    .answer-line {
+      display: inline-block;
+      border-bottom: 1px solid black;
+      width: 160px;
+      text-align: center;
+    }
+    .checkbox-table {
+      display: inline-block;
+      margin-right: 40px;
+    }
+    table {
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+    th, td {
+      border: 1px solid black;
+      padding: 6px 12px;
+      text-align: center;
+    }
+    input[type="checkbox"] {
+      transform: scale(1.2);
+    }
+    .italic {
+      font-style: italic;
+    }
+    .underlined-number {
+      text-decoration: underline;
+      display: inline-block;
+      width: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="title">Monotonie- und Krümmungsverhalten einer Polynomfunktion</div>
+
+  <div class="section">
+    Nachstehend ist der Graph der Polynomfunktion 3. Grades \( f \) dargestellt.  
+    Alle charakteristischen Punkte dieses Graphen (Schnittpunkte mit den Achsen, Extrempunkte, Wendepunkte) haben ganzzahlige Koordinaten.
+  </div>
+
+  <div class="section" style="text-align:center;">
+    <img src="Bild_1.png" alt="Graph einer Polynomfunktion" width="400">
+  </div>
+
+  <div class="section">
+    <strong>Aufgabenstellung:</strong><br>
+    Ergänzen Sie die Textlücken im nachstehenden Satz durch Ankreuzen des jeweils zutreffenden Satzteils so, dass eine richtige Aussage entsteht.
+  </div>
+
+  <div class="section">
+    Die Funktion \( f \) ist im Intervall 
+    <span class="answer-line">①</span>
+    streng monoton steigend und ändert ihr Krümmungsverhalten an der Stelle 
+    <span class="answer-line">②</span>.
+  </div>
+
+  <div class="section" style="text-align: center;">
+    <div class="checkbox-table">
+      <table>
+        <thead>
+          <tr>
+            <th colspan="2"><span>①</span></th>
+            
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>\((-\infty;\,-2)\)</td>
+            <td><input type="checkbox"></td>
+          </tr>
+          <tr>
+            <td>\((-1;\,1)\)</td>
+            <td><input type="checkbox"></td>
+          </tr>
+          <tr>
+            <td>\((-2;\,0)\)</td>
+            <td><input type="checkbox"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="checkbox-table">
+      <table>
+        <thead>
+          <tr>
+            <th colspan="2">②</th>
+            
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>\(x = -2\)</td>
+            <td><input type="checkbox"></td>
+          </tr>
+          <tr>
+            <td>\(x = -1\)</td>
+            <td><input type="checkbox"></td>
+          </tr>
+          <tr>
+            <td>\(x = 0\)</td>
+            <td><input type="checkbox"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="section italic" style="text-align:right;">[0/ ½ / 1 P.]</div>
+
+</body>
+</html>

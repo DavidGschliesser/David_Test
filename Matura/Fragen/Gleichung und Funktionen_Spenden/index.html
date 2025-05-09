@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Spenden</title>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 40px;
+    }
+    .title {
+      font-size: 1.4em;
+      font-weight: bold;
+    }
+    .section {
+      margin-top: 20px;
+    }
+    .italic {
+      font-style: italic;
+    }
+    .answer-line {
+      display: inline-block;
+      border-bottom: 1px solid black;
+      width: 300px;
+      margin-left: 10px;
+      margin-right: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="title">Spenden</div>
+
+  <div class="section">
+    Anton spendet an 3 Forschungseinrichtungen jeweils einen Geldbetrag von \( a \) Euro<br>
+    und an 5 Tierschutzvereine jeweils einen Geldbetrag von \( a + 10 \) Euro.
+  </div>
+
+  <div class="section">
+    <strong>Aufgabenstellung:</strong><br>
+    Geben Sie den durchschnittlichen Geldbetrag \( G \) (in Euro), den Anton gespendet hat, in Abhängigkeit von \( a \) an.
+  </div>
+  <div class="section">
+    <table style="border-collapse: collapse; margin-top: 10px; width: 100%; max-width: 800px; margin-left: auto; margin-right: auto;">
+      <tbody>
+        <tr>
+          <td style="border: 1px solid black; padding: 8px;">\( G = \frac{3a + 5(a + 5)}{8} \)</td> <!-- leicht falsche Aussage -->
+          <td style="border: 1px solid black; text-align: center;"><input type="checkbox" id="cb1"></td>
+        </tr>
+        <tr>
+          <td style="border: 1px solid black; padding: 8px;">\( G = \frac{3a + 5a + 50}{2} \)</td>
+          <td style="border: 1px solid black; text-align: center;"><input type="checkbox" id="cb2"></td>
+        </tr>
+        <tr>
+          <td style="border: 1px solid black; padding: 8px;">\( G = \frac{8a + 10}{8} \)</td>
+          <td style="border: 1px solid black; text-align: center;"><input type="checkbox" id="cb3"></td>
+        </tr>
+        <tr>
+          <td style="border: 1px solid black; padding: 8px;">\( G = a + \frac{50}{8} \)</td> <!-- korrekt -->
+          <td style="border: 1px solid black; text-align: center;"><input type="checkbox" id="cb4"></td>
+        </tr>
+        <tr>
+          <td style="border: 1px solid black; padding: 8px;">\( G = \frac{3a + 5a + 50}{8} \)</td> <!-- korrekt -->
+          <td style="border: 1px solid black; text-align: center;"><input type="checkbox" id="cb5"></td>
+        </tr>
+        <tr>
+          <td style="border: 1px solid black; padding: 8px;">\( G = \frac{3a + 5a + 10}{8} \)</td>
+          <td style="border: 1px solid black; text-align: center;"><input type="checkbox" id="cb6"></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+  <div class="section" style="text-align: center; margin-top: 20px;">
+    <button onclick="prüfeSpenden()">Antwort überprüfen</button>
+    <div id="feedback" style="margin-top: 15px; font-weight: bold;"></div>
+  </div>
+  
+  <script>
+    function prüfeSpenden() {
+      const cbs = [];
+      for (let i = 1; i <= 6; i++) {
+        cbs[i] = document.getElementById("cb" + i).checked;
+      }
+  
+      const korrekt = 
+        cbs[4] === true &&  // Zeile 4 = korrekt
+        cbs[5] === true &&  // Zeile 5 = korrekt
+        // alle anderen falsch
+        !cbs[1] && !cbs[2] && !cbs[3] && !cbs[6];
+  
+      const feedback = document.getElementById("feedback");
+      if (korrekt) {
+        feedback.textContent = "✅ Richtig gelöst!";
+        feedback.style.color = "green";
+      } else {
+        feedback.textContent = "❌ Leider falsch. Bitte nochmals überprüfen.";
+        feedback.style.color = "darkred";
+      }
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Graph und Sekante</title>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 40px;
+    }
+    .title {
+      font-size: 1.4em;
+      font-weight: bold;
+    }
+    .section {
+      margin-top: 20px;
+    }
+    .answer-line {
+      display: inline-block;
+      border-bottom: 1px solid black;
+      width: 160px;
+      text-align: center;
+    }
+    .checkbox-table {
+      display: inline-block;
+      margin-right: 40px;
+    }
+    table {
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+    th, td {
+      border: 1px solid black;
+      padding: 6px 12px;
+      text-align: center;
+    }
+    input[type="checkbox"] {
+      transform: scale(1.2);
+    }
+    .italic {
+      font-style: italic;
+    }
+    .underlined-number {
+      text-decoration: underline;
+      display: inline-block;
+      width: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="title">Graph und Sekante</div>
+
+  <div class="section">
+    In der nachstehenden Abbildung sind der Graph der differenzierbaren Funktion \( f \) sowie die<br>
+    Sekante durch die Punkte \( (a\,|\,f(a)) \) und \( (b\,|\,f(b)) \) dargestellt.
+  </div>
+
+  <div class="section" style="text-align:center;">
+    <img src="Bild_1.png" alt="Graph einer Funktion mit Sekante" width="400">
+  </div>
+
+  <div class="section">
+    <strong>Aufgabenstellung:</strong><br>
+    Ergänzen Sie die Textlücken im nachstehenden Satz durch Ankreuzen des jeweils zutreffenden Satzteils so, dass eine richtige Aussage entsteht.
+  </div>
+
+  <div class="section">
+    Der Ausdruck \( \displaystyle \lim_{a \to b} \frac{f(b) - f(a)}{b - a} \) ist 
+    <span class="answer-line"><span >①</span></span> 
+    und entspricht der 
+    <span class="answer-line"><span >②</span></span>.
+  </div>
+<!-- Navigation und Tabellenbereich -->
+<div class="section" style="text-align: center;">
+  <div class="checkbox-table">
+    <table>
+      <thead>
+        <tr>
+          <th colspan="2"><span>①</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>der Differenzenquotient im Intervall [a; b]</td>
+          <td><input type="checkbox" id="cb-l-1"></td>
+        </tr>
+        <tr>
+          <td>der Differentialquotient an der Stelle b</td>
+          <td><input type="checkbox" id="cb-l-2"></td>
+        </tr>
+        <tr>
+          <td>die mittlere Änderungsrate im Intervall [a; b]</td>
+          <td><input type="checkbox" id="cb-l-3"></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="checkbox-table">
+    <table>
+      <thead>
+        <tr>
+          <th colspan="2"><span>②</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Sekantensteigung im Intervall [a; b]</td>
+          <td><input type="checkbox" id="cb-r-1"></td>
+        </tr>
+        <tr>
+          <td>Tangentensteigung in (a | f(a))</td>
+          <td><input type="checkbox" id="cb-r-2"></td>
+        </tr>
+        <tr>
+          <td>Tangentensteigung in (b | f(b))</td>
+          <td><input type="checkbox" id="cb-r-3"></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Button + Feedback -->
+<div class="section" style="text-align: center; margin-top: 20px;">
+  <button onclick="prüfeAntwort()">Antwort überprüfen</button>
+  <div id="feedback" style="margin-top: 15px; font-weight: bold;"></div>
+</div>
+
+<!-- JavaScript zur Auswertung -->
+<script>
+  function prüfeAntwort() {
+    // Die richtigen Checkboxen
+    const falschL1 = document.getElementById("cb-l-1").checked;
+    const richtigL = document.getElementById("cb-l-2").checked;
+    const falschL2 = document.getElementById("cb-l-3").checked;
+
+    const falschR3 = document.getElementById("cb-r-1").checked;
+    const falschR2 = document.getElementById("cb-r-2").checked;
+    const richtigR = document.getElementById("cb-r-3").checked;
+
+    const korrekt =
+      richtigL && !falschL1 && !falschL2 &&
+      richtigR && !falschR2 && !falschR3;
+
+    const feedback = document.getElementById("feedback");
+    if (korrekt) {
+      feedback.textContent = "✅ Richtig gelöst!";
+      feedback.style.color = "green";
+    } else {
+      feedback.textContent = "❌ Leider falsch. Bitte nochmal überprüfen.";
+      feedback.style.color = "darkred";
+    }
+  }
+</script>
+
+
+  <div class="section italic" style="text-align:right;">[0 / 1 P.]</div>
+
+</body>
+</html>

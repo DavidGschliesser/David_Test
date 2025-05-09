@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Kraft und Beschleunigung</title>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 40px;
+    }
+    .title {
+      font-size: 1.4em;
+      font-weight: bold;
+    }
+    .section {
+      margin-top: 20px;
+    }
+    .italic {
+      font-style: italic;
+    }
+    .inline-input {
+      width: 80px;
+      font-size: 1em;
+      padding: 2px 6px;
+      margin: 0 6px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="title">Kraft und Beschleunigung</div>
+
+  <div class="section">
+    Wirkt eine Kraft auf einen ruhenden Körper, so wird dieser Körper in Richtung der Kraft beschleunigt.
+    Für den Betrag der Kraft gilt \( F = m \cdot a \), wobei mit \( m \) die Masse und mit \( a \)
+    die Beschleunigung des Körpers bezeichnet wird 
+    (<em>F</em> in Newton (N), <em>m</em> in kg, <em>a</em> in m/s²).
+  </div>
+
+  <div class="section">
+    Auf eine bestimmte ruhende Kugel wirkt eine Kraft von \( F_1 = 5\,\text{N} \). 
+    Dadurch wird diese Kugel mit \( a_1 = 0{,}625\,\text{m/s}^2 \) beschleunigt.  
+    Auf eine zweite ruhende Kugel gleicher Masse soll eine Kraft \( F_2 \) so wirken, 
+    dass diese Kugel mit \( a_2 = 0{,}5\,\text{m/s}^2 \) beschleunigt wird.
+  </div>
+
+  <div class="section">
+    <strong>Aufgabenstellung:</strong><br>
+    Berechnen Sie \( F_2 \) in N.
+  </div>
+
+  <div class="section">
+    \( F_2 = \)
+    <input type="number" id="f2input" class="inline-input" placeholder="...">
+    N
+  </div>
+
+  <div class="section" style="margin-top: 20px;">
+    <button onclick="prüfeF2()">Antwort überprüfen</button>
+    <div id="feedback" style="margin-top: 15px; font-weight: bold;"></div>
+  </div>
+
+  <div class="section italic" style="text-align:right;">[0 / 1 P.]</div>
+
+  <script>
+    function prüfeF2() {
+      const eingabe = parseFloat(document.getElementById("f2input").value.replace(",", "."));
+      const feedback = document.getElementById("feedback");
+
+      const korrektwert = 4.0;
+      const toleranz = 0.01;
+
+      if (isNaN(eingabe)) {
+        feedback.textContent = "❗ Bitte eine gültige Zahl eingeben.";
+        feedback.style.color = "darkred";
+      } else if (Math.abs(eingabe - korrektwert) < toleranz) {
+        feedback.textContent = "✅ Richtig! ";
+        feedback.style.color = "green";
+        MathJax.typeset(); // für Formel-Update
+      } else {
+        feedback.textContent = "❌ Leider falsch. Tipp: Berechnen Sie zuerst die Masse.";
+        feedback.style.color = "darkred";
+      }
+    }
+  </script>
+
+</body>
+</html>
