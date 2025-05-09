@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Matura Jänner 2025</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 40px;
+      text-align: center;
+    }
+    h1 {
+      margin-bottom: 30px;
+    }
+    iframe {
+      width: 90%;
+      height: 700px;
+      border: 1px solid #ccc;
+      margin-bottom: 20px;
+    }
+    .nav-buttons {
+      margin-top: 20px;
+    }
+    button {
+      font-size: 1em;
+      padding: 10px 20px;
+      margin: 0 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Matura Jänner 2025</h1>
+
+  <iframe id="aufgabenFrame" src="" loading="lazy"></iframe>
+
+  <div class="nav-buttons">
+    <button onclick="zurueck()">◀ Zurück</button>
+    <button onclick="weiter()">Weiter ▶</button>
+  </div>
+  <button onclick="finishExam()">🛑 Prüfung beenden und Ergebnis speichern</button>
+
+  <script>
+    // Dieser Teil überprüft, dass man wirklich von der index seite hier herkommt und nicht händich auf die seite geht.
+    const name = sessionStorage.getItem("username");
+    const startTime = sessionStorage.getItem("startTime");
+      if (!name || !startTime) {
+         alert("Fehler: Kein Name oder Startzeit gefunden. Bitte erneut starten.");
+         window.location.href = "index.html";
+      }
+    // Liste der Aufgabenordner relativ zu diesem HTML-Dokument
+    const ordnerListe = [
+        "Gleichung und Funktionen_Spenden",
+        "Graph und Sekante",
+        "Kraft und Beschleunigung",
+        "Lineare Gleichung",
+        "Monotonie- Krümmungsverhalten einer Polynomfunktion",
+        "Nullstellen, Extremstellen und Wendestellen",
+        "Paralleler Vektor",
+        "Position eines Schiffes",
+        "Segelboot",
+        "Swimmingpool"
+    ];
+
+    let aktuelleIndex = 0;
+
+    function ladeAufgabe() {
+      const pfad = "Fragen/" + ordnerListe[aktuelleIndex] + "/index.html";
+      document.getElementById("aufgabenFrame").src = pfad;
+    }
+
+    function weiter() {
+      if (aktuelleIndex < ordnerListe.length - 1) {
+        aktuelleIndex++;
+        ladeAufgabe();
+      }
+    }
+     
+    function zurueck() {
+      if (aktuelleIndex > 0) {
+        aktuelleIndex--;
+        ladeAufgabe();
+      }
+    }
+
+      //  Ergebnisse-Speicher
+    const ergebnisse = {};
+     // Nachricht vom iframe empfangen
+    window.addEventListener("message", (event) => {
+    if (event.data.type === "antwortErgebnis") {
+      const { frage, punkte } = event.data;
+      ergebnisse[frage] = punkte;
+      console.log("Empfangene Punkte:", frage, punkte);
+    }
+      });
+    function finishExam() {
+      const endTime = new Date().toISOString();
+
+      const csv = `Name,Startzeit,Endzeit\n${name},${startTime},${endTime}`;
+
+      
+
+      const blob = new Blob([csv], { type: 'text/csv' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = `Ergebnis_${name.replace(/\s+/g, "_")}_${Date.now()}.csv`
+
+      link.click();
+
+     alert("Prüfung abgeschlossen. Ergebnis wurde heruntergeladen.");
+     disableUI(); // sperrt die fragen nach abschluss
+    }
+
+    // die funktion dient zum sperren der fragen
+    function disableUI() {
+      document.querySelectorAll("button").forEach(btn => btn.disabled = true);
+    }
+
+    // Beim Laden der Seite die erste Aufgabe anzeigen
+    window.onload = ladeAufgabe;
+  </script>
+
+</body>
+</html>

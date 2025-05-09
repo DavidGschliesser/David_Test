@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Prüfung starten</title>
+</head>
+<body>
+  <h2>Willkommen zur Prüfung</h2>
+  <label for="username">Bitte gib deinen Namen ein:</label>
+  <input type="text" id="username" placeholder="Vorname Nachname">
+  <button onclick="startExam()">Start</button>
+
+  <script>
+    function startExam() {
+      const name = document.getElementById('username').value.trim();
+      if (!name) {
+        alert("Name darf nicht leer sein!");
+        return;
+      }
+      sessionStorage.setItem("username", name);
+      sessionStorage.setItem("startTime", new Date().toISOString());
+      window.location.href = "navigation.html";
+    }
+  </script>
+</body>
+</html>

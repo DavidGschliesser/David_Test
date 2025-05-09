@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Aufrufe eines Videos</title>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 40px;
+    }
+    .title {
+      font-size: 1.4em;
+      font-weight: bold;
+    }
+    .section {
+      margin-top: 20px;
+    }
+    .italic {
+      font-style: italic;
+    }
+    table {
+      border-collapse: collapse;
+      margin-top: 15px;
+    }
+    th, td {
+      border: 1px solid black;
+      padding: 10px 20px;
+      text-align: center;
+    }
+    .inline-input {
+      width: 80px;
+      font-size: 1em;
+      padding: 4px;
+      margin-left: 10px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="title">Aufrufe eines Videos</div>
+
+  <div class="section">
+    Ein Video wurde auf eine Internetplattform hochgeladen. Zu Beginn der Beobachtung waren 500 Aufrufe zu verzeichnen.
+    Im Zeitintervall \([0; t_1]\) wird die Anzahl der bisher erfolgten Aufrufe durch eine Exponentialfunktion beschrieben.
+  </div>
+
+  <div class="section">
+    In der nachstehenden Tabelle sind Wertepaaren dieser Exponentialfunktion angegeben:
+    
+    <table>
+      <thead>
+        <tr>
+          <th>Zeit nach Beginn der Beobachtung in h</th>
+          <th>Anzahl der Aufrufe</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>0</td><td>500</td></tr>
+        <tr><td>1</td><td>700</td></tr>
+        <tr><td>2</td><td>980</td></tr>
+        <tr><td>3</td><td>1372</td></tr>
+        <tr><td>\( t_1 \)</td><td>10330</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <strong>Aufgabenstellung:</strong><br>
+    Berechnen Sie \( t_1 \).
+  </div>
+
+  <div class="section">
+    \( t_1 = \)
+    <input type="number" id="t1input" class="inline-input" placeholder="?"> h
+    <button onclick="prüfeT1()">Überprüfen</button>
+    <div id="feedback" style="margin-top: 15px; font-weight: bold;"></div>
+  </div>
+
+  <div class="section italic" style="text-align:right;">[0 / 1 P.]</div>
+
+  <script>
+    function prüfeT1() {
+      const eingabe = parseFloat(document.getElementById("t1input").value.replace(",", "."));
+      const feedback = document.getElementById("feedback");
+
+      // Exponentielles Modell: Startwert = 500, Folgewerte geben: f(t) = 500 * r^t
+      // z. B. r = 700/500 = 1.4 ⇒ f(t) = 500 * 1.4^t ⇒ t = log(10330 / 500) / log(1.4) ≈ 6
+      const t1_korrekt = 6.0;
+      const toleranz = 0.1;
+
+      if (isNaN(eingabe)) {
+        feedback.textContent = "❗ Bitte eine gültige Zahl eingeben.";
+        feedback.style.color = "darkred";
+      } else if (Math.abs(eingabe - t1_korrekt) < toleranz) {
+        feedback.textContent = "✅ Richtig! \( t_1 \approx 6 \)";
+        feedback.style.color = "green";
+        MathJax.typeset();
+      } else {
+        feedback.textContent = "❌ Leider falsch. Tipp: Überlegen Sie, wie sich die Anzahl exponentiell verändert.";
+        feedback.style.color = "darkred";
+      }
+    }
+  </script>
+
+</body>
+</html>
